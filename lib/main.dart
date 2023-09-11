@@ -29,7 +29,7 @@ class HomeActivity extends StatelessWidget {
               Icon(
                 Icons.account_circle,
                 color: Colors.green,
-                size: 65,
+                size: 55,
               ),
               Text("Jhon Doe",
                   style: TextStyle(fontSize: 40, color: Colors.green)),
@@ -40,12 +40,12 @@ class HomeActivity extends StatelessWidget {
         ),
         appBar: AppBar(
           title: Text("Profile"),
-          //titleSpacing: 90,
+          titleSpacing: 90,
           centerTitle: true,
           toolbarHeight: 60,
-          elevation: 10,
+          elevation: 10,//sdfgh
           toolbarOpacity: 1,
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blue,//
         ));
   }
 }
