@@ -1,51 +1,78 @@
-import 'dart:js';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-main() {
-  runApp(const MyApp());
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: true, home: HomeActivity());
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Image Feed'),
+        ),
+        body: ImageFeed(),
+      ),
+    );
   }
 }
 
-class HomeActivity extends StatelessWidget {
-  const HomeActivity({super.key});
+class ImageFeed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.account_circle,
-                color: Colors.green,
-                size: 55,
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        final isPortrait = orientation == Orientation.portrait;
+        final itemCount = 10;
+
+        return isPortrait
+            ? ListView.builder(
+          itemCount: itemCount,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Image.network(
+                    'https://images.unsplash.com/photo-1564648351416-3eec9f3e85de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+                    width: 150,
+                    height: 150,
+                  ),
+                  SizedBox(
+                      height: 6
+                  ),
+
+                ],
               ),
-              Text("Jhon Doe",
-                  style: TextStyle(fontSize: 40, color: Colors.green)),
-              Text("Flutter Batch 4",
-                  style: TextStyle(fontSize: 30, color: Colors.blue))
-            ],
+            );
+          },
+        )
+            : GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
           ),
-        ),
-        appBar: AppBar(
-          title: Text("Profile"),
-          titleSpacing: 90,
-          centerTitle: true,
-          toolbarHeight: 60,
-          elevation: 10,//sdfgh
-          toolbarOpacity: 1,
-          backgroundColor: Colors.blue,//
-        ));
+          itemCount: itemCount,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Image.network(
+                    'https://images.unsplash.com/photo-1564648351416-3eec9f3e85de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+                    width: 150,
+                    height: 150,
+                  ),
+                  SizedBox(
+                      height: 6
+                  ),
+
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }
